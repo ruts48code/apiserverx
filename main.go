@@ -4,10 +4,20 @@ import (
 	"log"
 	"time"
 
-	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/lib/pq"
-
+	dbs "github.com/ruts48code/dbs4ruts"
 	utils "github.com/ruts48code/utils4ruts"
+)
+
+type (
+	Conf struct {
+		DBS    []string     `yaml:"dbs"`
+		Elogin EloginStruct `yaml:"elogin"`
+	}
+
+	EloginStruct struct {
+		Expire int `yaml:"expire"`
+		Clean  int `yaml:"clean"`
+	}
 )
 
 var (
@@ -16,7 +26,7 @@ var (
 
 func CleanTokenElogin() {
 	for {
-		db, err := getDBS()
+		db, err := dbs.OpenDBS(conf.DBS)
 		if err != nil {
 			log.Printf("Error: %v\n", err)
 			time.Sleep(time.Duration(conf.Elogin.Clean) * time.Second)
@@ -24,15 +34,7 @@ func CleanTokenElogin() {
 		}
 
 		ts := utils.GetTimeStamp(time.Now().Add(time.Duration(conf.Elogin.Expire) * time.Second * -1))
-		qstring := ""
-		switch conf.DBType {
-		case "postgres":
-			qstring = "DELETE FROM token WHERE timestamp < $1;"
-		case "mysql":
-			qstring = "DELETE FROM token WHERE timestamp < ?;"
-		}
-		log.Printf("query is %s -- time is %s\n", qstring, ts)
-		_, err = db.Exec(qstring, ts)
+		_, err = db.Exec("DELETE FROM token WHERE timestamp < ?;", ts)
 		if err != nil {
 			log.Printf("Error: %v\n", err)
 		} else {
