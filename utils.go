@@ -5,11 +5,11 @@ import (
 	"errors"
 	"log"
 
-	util "github.com/ruts48code/utils4ruts"
+	utils "github.com/ruts48code/utils4ruts"
 
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
-	"gopkg.in/yaml.v3"
+	//"gopkg.in/yaml.v3"
 )
 
 type (
@@ -29,13 +29,8 @@ type (
 	}
 )
 
-func processConfig() {
-	confdata := util.ReadFile("/etc/apiserver.yml")
-	yaml.Unmarshal(confdata, &conf)
-}
-
 func getDBS() (*sql.DB, error) {
-	dbN := util.RandomArrayString(conf.DBS)
+	dbN := utils.RandomArrayString(conf.DBS)
 	dbConnect := false
 	var db *sql.DB
 	var err error

@@ -7,7 +7,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
 
-	util "github.com/ruts48code/utils4ruts"
+	utils "github.com/ruts48code/utils4ruts"
 )
 
 var (
@@ -23,7 +23,7 @@ func CleanTokenElogin() {
 			continue
 		}
 
-		ts := util.GetTimeStamp(time.Now().Add(time.Duration(conf.Elogin.Expire) * time.Second * -1))
+		ts := utils.GetTimeStamp(time.Now().Add(time.Duration(conf.Elogin.Expire) * time.Second * -1))
 		qstring := ""
 		switch conf.DBType {
 		case "postgres":
@@ -44,7 +44,7 @@ func CleanTokenElogin() {
 }
 
 func main() {
-	processConfig()
+	utils.ProcessConfig("/etc/apiserver.yml", &conf)
 	go CleanTokenElogin()
 	select {}
 }
