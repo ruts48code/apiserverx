@@ -33,7 +33,9 @@ var (
 func CleanTokenElogin() {
 	for {
 		log.Printf("Start Clean Token Elogin\n")
-		utils.HTTPGet("https://api.rmutsv.ac.th/elogin/clean/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size))
+		otphex := otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size)
+		log.Printf("OTP = %s\n", otphex)
+		utils.HTTPGet("https://api.rmutsv.ac.th/elogin/clean/" + otphex)
 		log.Printf("Clean Token Elogin Finnish\n")
 		time.Sleep(time.Duration(conf.Elogin.Clean) * time.Second)
 	}
