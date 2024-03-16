@@ -61,9 +61,21 @@ func UpdateStudentProcess() {
 	}
 }
 
+func CleanStudentProcess() {
+	for {
+		log.Printf("Start Clean Student Process\n")
+		web := "https://api.rmutsv.ac.th/student/report/cleanalldata/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size)
+		log.Printf("web = %s\n", web)
+		utils.HTTPGet(web)
+		log.Printf("Clean Student Process Finnish\n")
+		time.Sleep(time.Duration(conf.Student.Cache.Clean) * time.Second)
+	}
+}
+
 func main() {
 	utils.ProcessConfig("/etc/apiserver.yml", &conf)
 	go CleanTokenElogin()
 	go UpdateStudentProcess()
+	go CleanStudentProcess()
 	select {}
 }
