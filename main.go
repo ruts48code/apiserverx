@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"time"
 
 	otp "github.com/ruts48code/otp4ruts"
@@ -31,7 +32,9 @@ var (
 
 func CleanTokenElogin() {
 	for {
+		log.Printf("Start Clean Token Elogin\n")
 		utils.HTTPGet("https://api.rmutsv.ac.th/elogin/clean/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size))
+		log.Printf("Clean Token Elogin Finnish\n")
 		time.Sleep(time.Duration(conf.Elogin.Clean) * time.Second)
 	}
 }
