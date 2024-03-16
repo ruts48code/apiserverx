@@ -11,9 +11,10 @@ import (
 
 type (
 	Conf struct {
-		DBS    []string     `yaml:"dbs"`
-		OTP    OTPStruct    `yaml:"otp"`
-		Elogin EloginStruct `yaml:"elogin"`
+		DBS     []string      `yaml:"dbs"`
+		OTP     OTPStruct     `yaml:"otp"`
+		Elogin  EloginStruct  `yaml:"elogin"`
+		Student StudentStruct `yaml:"student"`
 	}
 	OTPStruct struct {
 		Key      string `yaml:"key"`
@@ -22,6 +23,14 @@ type (
 	}
 	EloginStruct struct {
 		Expire int `yaml:"expire"`
+		Clean  int `yaml:"clean"`
+	}
+	StudentStruct struct {
+		Cache StudentCacheStruct `yaml:"cache"`
+	}
+
+	StudentCacheStruct struct {
+		Update int `yaml:"update"`
 		Clean  int `yaml:"clean"`
 	}
 )
@@ -41,8 +50,20 @@ func CleanTokenElogin() {
 	}
 }
 
+func UpdateStudentProcess() {
+	for {
+		log.Printf("Start Update Student Process\n")
+		web := "/student/report/processalldata/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size)
+		log.Printf("web = %s\n", web)
+		utils.HTTPGet(web)
+		log.Printf("Update Student Process Finnish\n")
+		time.Sleep(time.Duration(conf.Student.Cache.Update) * time.Second)
+	}
+}
+
 func main() {
 	utils.ProcessConfig("/etc/apiserver.yml", &conf)
 	go CleanTokenElogin()
+	go UpdateStudentProcess()
 	select {}
 }
