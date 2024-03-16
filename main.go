@@ -53,7 +53,7 @@ func CleanTokenElogin() {
 func UpdateStudentProcess() {
 	for {
 		log.Printf("Start Update Student Process\n")
-		web := "/student/report/processalldata/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size)
+		web := "https://api.rmutsv.ac.th/student/report/processalldata/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size)
 		log.Printf("web = %s\n", web)
 		utils.HTTPGet(web)
 		log.Printf("Update Student Process Finnish\n")
