@@ -1,19 +1,24 @@
 package main
 
 import (
-	"log"
 	"time"
 
-	dbs "github.com/ruts48code/dbs4ruts"
+	otp "github.com/ruts48code/otp4ruts"
+
 	utils "github.com/ruts48code/utils4ruts"
 )
 
 type (
 	Conf struct {
 		DBS    []string     `yaml:"dbs"`
+		OTP    OTPStruct    `yaml:"otp"`
 		Elogin EloginStruct `yaml:"elogin"`
 	}
-
+	OTPStruct struct {
+		Key      string `yaml:"key"`
+		Size     int    `yaml:"size"`
+		Interval int    `yaml:"interval"`
+	}
 	EloginStruct struct {
 		Expire int `yaml:"expire"`
 		Clean  int `yaml:"clean"`
@@ -26,21 +31,7 @@ var (
 
 func CleanTokenElogin() {
 	for {
-		db, err := dbs.OpenDBS(conf.DBS)
-		if err != nil {
-			log.Printf("Error: %v\n", err)
-			time.Sleep(time.Duration(conf.Elogin.Clean) * time.Second)
-			continue
-		}
-
-		ts := utils.GetTimeStamp(time.Now().Add(time.Duration(conf.Elogin.Expire) * time.Second * -1))
-		_, err = db.Exec("DELETE FROM token WHERE timestamp < ?;", ts)
-		if err != nil {
-			log.Printf("Error: %v\n", err)
-		} else {
-			log.Printf("Clean Successful\n")
-		}
-		db.Close()
+		utils.HTTPGet("https://api.rmutsv.ac.th/elogin/clean/" + otp.TimeOTPxHex([]byte(conf.OTP.Key), conf.OTP.Size))
 		time.Sleep(time.Duration(conf.Elogin.Clean) * time.Second)
 	}
 }
