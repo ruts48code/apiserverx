@@ -3,11 +3,20 @@ module apiserverx
 go 1.22.1
 
 require (
-	github.com/ruts48code/otp4ruts v0.0.0-20240316091156-78401dab1b87
-	github.com/ruts48code/utils4ruts v0.0.0-20240316091042-0f703a377c0f
+	github.com/ruts48code/otp4ruts v0.0.0-20240323054131-3b34e41968d0
+	github.com/ruts48code/utils4ruts v0.0.0-20240323054002-060db92a232a
 )
 
 require (
-	github.com/ruts48code/random4ruts v0.0.0-20240313083834-115f46b90008 // indirect
+	github.com/agext/levenshtein v1.2.3 // indirect
+	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/hashicorp/hcl/v2 v2.20.0 // indirect
+	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
+	github.com/ruts48code/random4ruts v0.0.0-20240318160157-d85939eda018 // indirect
+	github.com/zclconf/go-cty v1.14.4 // indirect
+	golang.org/x/mod v0.16.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/tools v0.19.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
