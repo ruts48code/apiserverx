@@ -18,12 +18,12 @@ github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348 h1:MtvEpTB6LX3v
 github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348/go.mod h1:B69LEHPfb2qLo0BaaOLcbitczOKLWTsrBG9LczfCD4k=
 github.com/mitchellh/go-wordwrap v1.0.1 h1:TLuKupo69TCn6TQSyGxwI1EblZZEsQ0vMlAFQflz0v0=
 github.com/mitchellh/go-wordwrap v1.0.1/go.mod h1:R62XHJLzvMFRBbcrT7m7WgmE1eOyTSsCt+hzestvNj0=
-github.com/ruts48code/otp4ruts v0.0.0-20240323054131-3b34e41968d0 h1:T++zBuRs64NFE23tmTPIbFlUla3Hm9d1Rt5jYaNsmoA=
-github.com/ruts48code/otp4ruts v0.0.0-20240323054131-3b34e41968d0/go.mod h1:EI3b2MPDMt5M9d0Zi7crOp4oX3d6BWnJy7BhUEVvvhQ=
+github.com/ruts48code/otp4ruts v0.0.0-20240326023809-2546943f0483 h1:Y80SbV3Nd/ooR4O+9Ewcl0ewoNrkchwqS1BR6pL7mYY=
+github.com/ruts48code/otp4ruts v0.0.0-20240326023809-2546943f0483/go.mod h1:ejOU8toOEvTbm8InBtNvaF7y5OVEk0RMNnLQFOqBLcA=
 github.com/ruts48code/random4ruts v0.0.0-20240318160157-d85939eda018 h1:cCIme0V8YHm0FWaJH+dFoYaZojlIIY+hQeupo3QDFOU=
 github.com/ruts48code/random4ruts v0.0.0-20240318160157-d85939eda018/go.mod h1:6D/Vr/ytkNgvU7HVu1/+tQtpDXJvdMXxuiDTiTqtJ7o=
-github.com/ruts48code/utils4ruts v0.0.0-20240323054002-060db92a232a h1:ZXkE3PWpigR3xk951MBlT+fRiQ1bJx2rTJ3+fGomIEs=
-github.com/ruts48code/utils4ruts v0.0.0-20240323054002-060db92a232a/go.mod h1:sS4+dJyJlVC9l0vSek6Ej4ot68hPvk2kjU/16PSR22k=
+github.com/ruts48code/utils4ruts v0.0.0-20240326023658-0e67652f2a4f h1:fnlBFUxuf9/ixFufuwezH1HrbnHiTRVX5LixUB1+lEc=
+github.com/ruts48code/utils4ruts v0.0.0-20240326023658-0e67652f2a4f/go.mod h1:sS4+dJyJlVC9l0vSek6Ej4ot68hPvk2kjU/16PSR22k=
 github.com/sergi/go-diff v1.0.0 h1:Kpca3qRNrduNnOQeazBd0ysaKrUJiIuISHxogkT9RPQ=
 github.com/sergi/go-diff v1.0.0/go.mod h1:0CfEIISq7TuYL3j771MWULgwwjU+GofnZX9QAmXWZgo=
 github.com/zclconf/go-cty v1.14.4 h1:uXXczd9QDGsgu0i/QFR/hzI5NYCHLf6NQw/atrbnhq8=

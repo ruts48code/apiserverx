@@ -3,8 +3,8 @@ module apiserverx
 go 1.22.1
 
 require (
-	github.com/ruts48code/otp4ruts v0.0.0-20240323054131-3b34e41968d0
-	github.com/ruts48code/utils4ruts v0.0.0-20240323054002-060db92a232a
+	github.com/ruts48code/otp4ruts v0.0.0-20240326023809-2546943f0483
+	github.com/ruts48code/utils4ruts v0.0.0-20240326023658-0e67652f2a4f
 )
 
 require (

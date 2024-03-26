@@ -57,7 +57,15 @@ func CronLoop(name string, web string, interval int) {
 }
 
 func main() {
-	utils.ProcessConfig("/etc/apiserver.yml", &conf)
+	if utils.FileExist("/etc/apiserver.hcl") {
+		utils.ProcessConfigHCL("/etc/apiserver.hcl", &conf)
+	} else if utils.FileExist("/etc/apiserver.yml") {
+		utils.ProcessConfig("/etc/apiserver.yml", &conf)
+	} else {
+		log.Printf("Error: cannot load configurationfile\n")
+		return
+	}
+
 	go CronLoop("Clean Token", "https://api.rmutsv.ac.th/elogin/clean/", conf.Elogin.Clean)
 	go CronLoop("Update Student Process", "https://api.rmutsv.ac.th/student/report/processalldata/", conf.Student.Cache.Update)
 	go CronLoop("Clean Student Process", "https://api.rmutsv.ac.th/student/report/cleanalldata/", conf.Student.Cache.Clean)
