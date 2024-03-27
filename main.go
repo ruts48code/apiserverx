@@ -9,42 +9,6 @@ import (
 	utils "github.com/ruts48code/utils4ruts"
 )
 
-type (
-	Conf struct {
-		DBS     []string      `yaml:"dbs"`
-		OTP     OTPStruct     `yaml:"otp"`
-		Elogin  EloginStruct  `yaml:"elogin"`
-		Student StudentStruct `yaml:"student"`
-		ArsDB   ARSStruct     `yaml:"ars"`
-	}
-	OTPStruct struct {
-		Key      string `yaml:"key"`
-		Size     int    `yaml:"size"`
-		Interval int    `yaml:"interval"`
-	}
-	EloginStruct struct {
-		Expire int `yaml:"expire"`
-		Clean  int `yaml:"clean"`
-	}
-	StudentStruct struct {
-		Cache StudentCacheStruct `yaml:"cache"`
-	}
-
-	StudentCacheStruct struct {
-		Update int `yaml:"update"`
-		Clean  int `yaml:"clean"`
-	}
-	ARSStruct struct {
-		DB     string `yaml:"db"`
-		Update int    `yaml:"update"`
-		Clean  int    `yaml:"clean"`
-	}
-)
-
-var (
-	conf Conf
-)
-
 func CronLoop(name string, web string, interval int) {
 	for {
 		log.Printf("Start %s\n", name)
